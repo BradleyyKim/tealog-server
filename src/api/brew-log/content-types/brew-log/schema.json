@@ -1,0 +1,62 @@
+{
+  "kind": "collectionType",
+  "collectionName": "brew_logs",
+  "info": {
+    "singularName": "brew-log",
+    "pluralName": "brew-logs",
+    "displayName": "BrewLog",
+    "description": "Core brewing session log with parameters and tasting notes."
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "brewed_at": {
+      "type": "datetime",
+      "required": true
+    },
+    "tea": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::tea-leaf.tea-leaf"
+    },
+    "teawares": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::teaware.teaware"
+    },
+    "water_type": {
+      "type": "string"
+    },
+    "water_temp": {
+      "type": "integer"
+    },
+    "leaf_amount_g": {
+      "type": "decimal"
+    },
+    "steeping_details": {
+      "type": "text"
+    },
+    "rating": {
+      "type": "integer",
+      "min": 1,
+      "max": 5
+    },
+    "review": {
+      "type": "richtext"
+    },
+    "photos": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "owner": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}
