@@ -12,29 +12,17 @@
 
 ---
 
-## 계정 정보
+## 초기 설정
 
-### Admin (관리자 패널 전용)
+### 1. 환경변수
 
-| 항목 | 값 |
-|------|-----|
-| 이메일 | `admin@tealog.app` |
-| 비밀번호 | `Admin1234pass` |
-| 역할 | Super Admin |
-| 용도 | `/admin` 패널에서 콘텐츠 관리, 권한 설정 |
+```bash
+cp .env.example .env
+# .env 파일의 값들을 실제 키로 변경
+# openssl rand -base64 32 로 생성 가능
+```
 
-### 테스트 유저 (API 사용자)
-
-| 유저 | username | email | password |
-|------|----------|-------|----------|
-| 테스터1 | `tester1` | `tester1@tealog.app` | `Test1234pass` |
-| 테스터2 | `tester2` | `tester2@tealog.app` | `Test1234pass` |
-
-> 각 유저는 자신의 데이터만 조회/수정/삭제 가능 (owner 기반 격리)
-
----
-
-## 서버 실행 방법
+### 2. 서버 실행
 
 ```bash
 cd tealog-server
@@ -46,6 +34,17 @@ npm run develop
 npm run build && npm run start
 ```
 
+### 3. Admin 계정 생성
+
+첫 실행 시 `/admin`에 접속하면 Super Admin 계정 생성 화면이 나옵니다.
+원하는 이메일/비밀번호로 직접 생성하세요.
+
+### 4. 테스트 유저 생성
+
+클라이언트 앱의 회원가입 기능을 사용하거나, Admin Panel에서 직접 생성:
+- Content Manager → User → Create new entry
+- confirmed: TRUE, role: Authenticated 로 설정
+
 ---
 
 ## API 엔드포인트
@@ -55,7 +54,7 @@ npm run build && npm run start
 ```bash
 # 로그인
 POST /api/auth/local
-Body: { "identifier": "tester1", "password": "Test1234pass" }
+Body: { "identifier": "<username>", "password": "<password>" }
 Response: { "jwt": "...", "user": {...} }
 
 # 회원가입
@@ -157,18 +156,3 @@ npm run start
 # → /admin 에서 Admin 계정 재등록 필요
 # → 테스트 유저도 다시 회원가입 필요
 ```
-
----
-
-## 블로그 서버와의 관계
-
-| | 블로그 서버 | TeaLog 서버 |
-|---|---|---|
-| 위치 | `strapi-blog-server/` | `tealog-server/` |
-| DB | 독립 (자체 `.tmp/data.db`) | 독립 (자체 `.tmp/data.db`) |
-| 포트 | 1337 (동시 실행 시 변경 필요) | 1337 |
-| 콘텐츠 | Post, Category, Tag | Teaware, TeaLeaf, BrewLog |
-| Cloud 배포 | 별도 프로젝트 | 별도 프로젝트 |
-
-> 두 서버를 동시에 로컬에서 실행하려면 한쪽의 `PORT` 환경변수를 변경하세요:
-> `PORT=1338 npm run develop`
