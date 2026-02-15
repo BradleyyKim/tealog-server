@@ -492,17 +492,7 @@ export interface ApiTeaLeafTeaLeaf extends Struct.CollectionTypeSchema {
   };
   attributes: {
     brand_origin: Schema.Attribute.String;
-    category: Schema.Attribute.Enumeration<
-      [
-        'Green',
-        'White',
-        'Oolong',
-        'Black',
-        'Sheng_Puerh',
-        'Shou_Puerh',
-        'Herbal',
-      ]
-    >;
+    category: Schema.Attribute.String;
     cover_photo: Schema.Attribute.Media<'images'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -560,9 +550,7 @@ export interface ApiTeawareTeaware extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     status: Schema.Attribute.Enumeration<['Active', 'Broken', 'Sold']> &
       Schema.Attribute.DefaultTo<'Active'>;
-    type: Schema.Attribute.Enumeration<
-      ['Gaiwan', 'Yixing_Pot', 'Glass_Pot', 'Pitcher', 'Cup']
-    >;
+    type: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1035,6 +1023,7 @@ export interface PluginUsersPermissionsUser
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    displayName: Schema.Attribute.String & Schema.Attribute.Configurable;
     email: Schema.Attribute.Email &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{

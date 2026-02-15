@@ -16,16 +16,7 @@
       "required": true
     },
     "category": {
-      "type": "enumeration",
-      "enum": [
-        "Green",
-        "White",
-        "Oolong",
-        "Black",
-        "Sheng_Puerh",
-        "Shou_Puerh",
-        "Herbal"
-      ]
+      "type": "string"
     },
     "brand_origin": {
       "type": "string"

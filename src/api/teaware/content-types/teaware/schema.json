@@ -16,14 +16,7 @@
       "required": true
     },
     "type": {
-      "type": "enumeration",
-      "enum": [
-        "Gaiwan",
-        "Yixing_Pot",
-        "Glass_Pot",
-        "Pitcher",
-        "Cup"
-      ]
+      "type": "string"
     },
     "material": {
       "type": "string"
