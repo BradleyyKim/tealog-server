@@ -1118,5 +1118,26 @@
         "category": "short",
         "theme_ko": "여운",
         "source": "batch_2"
+    },
+    {
+        "id": 158,
+        "text": "차차 나아질거예요.",
+        "category": "short",
+        "theme_ko": "여운",
+        "source": "batch_2"
+    },
+    {
+        "id": 159,
+        "text": "사랑하는 찬미의 삶을 응원합니다.",
+        "category": "short",
+        "theme_ko": "여운",
+        "source": "batch_2"
+    },
+    {
+        "id": 160,
+        "text": "당신의 삶을 함께 음미하겠습니다.",
+        "category": "short",
+        "theme_ko": "여운",
+        "source": "batch_2"
     }
 ]
